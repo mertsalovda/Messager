@@ -1,20 +1,19 @@
 package ru.mertsalovda.messager
 
 import android.app.Application
-import ru.mertsalovda.messager.di.AppComponent
 import ru.mertsalovda.messager.di.AppModule
-import ru.mertsalovda.messager.di.DaggerAppComponent
+import toothpick.Scope
+import toothpick.Toothpick
 
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
-
+        appScopo = Toothpick.openScope(Application::class.java).installModules(AppModule())
     }
 
     companion object {
-        lateinit var appComponent: AppComponent
+        lateinit var appScopo: Scope
     }
 }

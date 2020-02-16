@@ -17,14 +17,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fr_login.*
-import ru.mertsalovda.messager.App
 
 import ru.mertsalovda.messager.R
-import ru.mertsalovda.messager.data.LoginRepository
 import ru.mertsalovda.messager.ui.AuthenticationState
 import ru.mertsalovda.messager.ui.MainViewModel
+import javax.inject.Inject
 
-class LoginFragment : Fragment() {
+class LoginFragment @Inject constructor(): Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
 
@@ -36,9 +35,8 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.fr_login, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        App.appComponent.inject(this)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -1,20 +1,14 @@
 package ru.mertsalovda.messager.di
 
-import android.content.Context
-import dagger.Module
-import dagger.Provides
 import ru.mertsalovda.messager.data.LoginDataSource
 import ru.mertsalovda.messager.data.LoginRepository
-import javax.inject.Singleton
+import toothpick.config.Module
+import toothpick.ktp.binding.bind
 
-@Module
-class AppModule(private val context: Context) {
+class AppModule() : Module() {
 
-    @Provides
-    @Singleton
-    fun provideContext() = context
-
-    @Provides
-    @Singleton
+    init {
+        bind<LoginRepository>().toInstance(provideLoginRepository())
+    }
     fun provideLoginRepository() = LoginRepository(LoginDataSource())
 }
