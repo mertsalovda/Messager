@@ -23,9 +23,9 @@ class UsersFragment : Fragment() {
     ): View? {
         usersViewModel =
             ViewModelProviders.of(this).get(UsersViewModel::class.java)
-        val root = inflater.inflate(R.layout.fr_profile, container, false)
+        val root = inflater.inflate(R.layout.fr_users, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        usersViewModel.text.observe(this, Observer {
+        usersViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

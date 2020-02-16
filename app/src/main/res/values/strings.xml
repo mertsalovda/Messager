@@ -7,9 +7,20 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_profile">Профль</string>
+    <string name="menu_profile">Профиль</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_add_chat">Добавить чат</string>
     <string name="menu_chats">Чаты</string>
     <string name="menu_logout">Выход</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Логин</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Войти или зарегистрироваться</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="welcome">"Добро пожаловать"</string>
+    <string name="invalid_username">Неправильный логин</string>
+    <string name="invalid_password">Пароль должен быть больше 4 символов</string>
+    <string name="login_failed">"Авторизация не удалась"</string>
+    <string name="auth">Авторизация</string>
 </resources>

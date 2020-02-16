@@ -3,29 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_all_chat">
+    app:startDestination="@+id/nav_all_chats">
 
     <fragment
-        android:id="@+id/nav_profile"
-        android:name="ru.mertsalovda.messager.ui.profile.ProfileFragment"
-        android:label="@string/menu_profile"
-        tools:layout="@layout/fr_profile" />
-
-    <fragment
-        android:id="@+id/nav_all_chat"
-        android:name="ru.mertsalovda.messager.ui.chats.ChatsFragment"
-        android:label="@string/menu_chats"
-        tools:layout="@layout/fr_chats" />
-
-    <fragment
-        android:id="@+id/nav_add_chat"
-        android:name="ru.mertsalovda.messager.ui.users.UsersFragment"
-        android:label="@string/menu_add_chat"
-        tools:layout="@layout/fr_users" />
+        android:id="@+id/nav_login"
+        android:name="ru.mertsalovda.messager.ui.login.LoginFragment"
+        android:label="@string/auth"
+        tools:layout="@layout/fr_login" />
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="ru.mertsalovda.messager.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fr_settings" />
+    <fragment
+        android:id="@+id/nav_all_chats"
+        android:name="ru.mertsalovda.messager.ui.chats.ChatsFragment"
+        android:label="@string/menu_chats"
+        tools:layout="@layout/fr_chats" />
+    <fragment
+        android:id="@+id/nav_add_chat"
+        android:name="ru.mertsalovda.messager.ui.users.UsersFragment"
+        android:label="@string/menu_add_chat"
+        tools:layout="@layout/fr_users" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="ru.mertsalovda.messager.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fr_profile" />
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="ru.mertsalovda.messager.ui.chat.ChatFragment"
+        tools:layout="@layout/fr_chat"/>
 </navigation>

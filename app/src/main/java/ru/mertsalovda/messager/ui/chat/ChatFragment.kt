@@ -1,6 +1,5 @@
-package ru.mertsalovda.messager.ui.chats
+package ru.mertsalovda.messager.ui.chat
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import ru.mertsalovda.messager.R
 
-class ChatsFragment : Fragment() {
+class ChatFragment : Fragment() {
 
-    private lateinit var chatsViewModel: ChatsViewModel
+    private lateinit var chatViewModel: ChatViewModel
+    var navController: NavController? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,12 +22,12 @@ class ChatsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        chatsViewModel =
-            ViewModelProviders.of(this).get(ChatsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fr_chats, container, false)
-        val textView: TextView = root.findViewById(R.id.text_chats)
+        chatViewModel =
+            ViewModelProviders.of(this).get(ChatViewModel::class.java)
+        val root = inflater.inflate(R.layout.fr_chat, container, false)
+        val textView: TextView = root.findViewById(R.id.text_chat)
 
-        chatsViewModel.text.observe(viewLifecycleOwner, Observer {
+        chatViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
 
