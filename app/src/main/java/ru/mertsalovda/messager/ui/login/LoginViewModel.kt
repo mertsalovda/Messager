@@ -8,7 +8,7 @@ import ru.mertsalovda.messager.data.LoginRepository
 import ru.mertsalovda.messager.data.Result
 
 import ru.mertsalovda.messager.R
-import ru.mertsalovda.messager.di.AppComponent
+import toothpick.ktp.delegate.inject
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor() : ViewModel() {
@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     val loginResult: LiveData<LoginResult> = _loginResult
 
     init{
-        App.appComponent.inject(this)
+        App.appScopo.inject(this)
     }
 
     fun login(username: String, password: String) {
