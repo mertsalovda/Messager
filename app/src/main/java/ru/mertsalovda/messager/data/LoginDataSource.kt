@@ -14,7 +14,8 @@ class LoginDataSource {
             val fakeUser = LoggedInUser(
                 java.util.UUID.randomUUID().toString(),
                 "Jane Doe",
-                "dsaf4sdfds54f4dsf"
+                "dsaf4sdfds54f4dsf",
+                ""
             )
             Result.Success(fakeUser)
         } catch (e: Throwable) {

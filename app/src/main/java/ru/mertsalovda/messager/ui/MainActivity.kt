@@ -15,6 +15,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import ru.mertsalovda.messager.R
 
 class MainActivity : AppCompatActivity() {
@@ -52,14 +53,20 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_login
             ), drawerLayout
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        viewModel.logginInUser.observe(this, Observer {
+            headerUserName.text = it.displayName
+        })
 
         MainViewModel.authenticationState.observe(this, Observer {
             when(it){
                 AuthenticationState.AUTHORIZED -> {
                     toolbar.visibility = View.VISIBLE
                     fab.visibility = View.VISIBLE
+                    viewModel.authState()
                     navController.navigate(R.id.nav_all_chats)
                 }
                 AuthenticationState.UNAUTHORIZED -> {
@@ -69,12 +76,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
