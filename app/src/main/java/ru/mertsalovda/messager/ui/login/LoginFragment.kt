@@ -67,7 +67,7 @@ class LoginFragment @Inject constructor(): Fragment() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
-                MainViewModel.setAuthState(AuthenticationState.AUTHORIZED)
+                MainViewModel.setAuthState(AuthenticationState.AUTHENTICATED)
                 this.findNavController().popBackStack()
             }
 

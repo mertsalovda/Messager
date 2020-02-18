@@ -1,6 +1,5 @@
 package ru.mertsalovda.messager.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.mertsalovda.messager.App
@@ -20,21 +19,21 @@ class MainViewModel : ViewModel() {
 
     init {
         // In this example, the user is always unauthenticated when MainActivity is launched
-        authenticationState.value = AuthenticationState.UNAUTHORIZED
+        authenticationState.value = AuthenticationState.UNAUTHENTICATED
         username = ""
         App.appScopo.inject(this)
     }
 
     fun refuseAuthentication() {
-        authenticationState.value = AuthenticationState.UNAUTHORIZED
+        authenticationState.value = AuthenticationState.UNAUTHENTICATED
     }
 
     fun authenticate(username: String, password: String) {
         if (passwordIsValidForUsername(username, password)) {
             this.username = username
-            authenticationState.value = AuthenticationState.AUTHORIZED
+            authenticationState.value = AuthenticationState.AUTHENTICATED
         } else {
-            authenticationState.value = AuthenticationState.INVALID_AUTHORIZATION
+            authenticationState.value = AuthenticationState.INVALID_AUTHENTICATION
         }
     }
 
@@ -59,7 +58,7 @@ class MainViewModel : ViewModel() {
 
 
 enum class AuthenticationState {
-    UNAUTHORIZED,
-    AUTHORIZED,
-    INVALID_AUTHORIZATION
+    UNAUTHENTICATED,
+    AUTHENTICATED,
+    INVALID_AUTHENTICATION
 }

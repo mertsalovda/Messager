@@ -10,7 +10,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -63,13 +62,13 @@ class MainActivity : AppCompatActivity() {
 
         MainViewModel.authenticationState.observe(this, Observer {
             when(it){
-                AuthenticationState.AUTHORIZED -> {
+                AuthenticationState.AUTHENTICATED -> {
                     toolbar.visibility = View.VISIBLE
-                    fab.visibility = View.VISIBLE
+                    fab.visibility = View.GONE
                     viewModel.authState()
                     navController.navigate(R.id.nav_all_chats)
                 }
-                AuthenticationState.UNAUTHORIZED -> {
+                AuthenticationState.UNAUTHENTICATED -> {
                     toolbar.visibility = View.GONE
                     fab.visibility = View.GONE
                     navController.navigate(R.id.nav_login)

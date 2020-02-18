@@ -12,6 +12,7 @@ class LoginDataSource {
         return try {
             // TODO: handle loggedInUser authentication
             val fakeUser = LoggedInUser(
+                1,
                 java.util.UUID.randomUUID().toString(),
                 "Jane Doe",
                 "dsaf4sdfds54f4dsf",

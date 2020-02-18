@@ -51,7 +51,7 @@ class ProfileFragment : Fragment() {
             }
             R.id.logout -> {
                 profileViewModel.logout()
-                MainViewModel.setAuthState(AuthenticationState.UNAUTHORIZED)
+                MainViewModel.setAuthState(AuthenticationState.UNAUTHENTICATED)
             }
             else -> return false
         }

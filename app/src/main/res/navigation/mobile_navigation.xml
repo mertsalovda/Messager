@@ -20,7 +20,12 @@
         android:id="@+id/nav_all_chats"
         android:name="ru.mertsalovda.messager.ui.chats.ChatsFragment"
         android:label="@string/menu_chats"
-        tools:layout="@layout/fr_chats" />
+        tools:layout="@layout/fr_chats" >
+        <action
+            android:id="@+id/action_nav_all_chats_to_nav_chat"
+            app:destination="@id/nav_chat"
+            app:popUpToInclusive="false"/>
+    </fragment>
     <fragment
         android:id="@+id/nav_add_chat"
         android:name="ru.mertsalovda.messager.ui.users.UsersFragment"

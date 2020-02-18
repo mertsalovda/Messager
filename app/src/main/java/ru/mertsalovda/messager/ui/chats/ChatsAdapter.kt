@@ -6,9 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.mertsalovda.messager.R
 import ru.mertsalovda.messager.data.model.Chat
 import ru.mertsalovda.messager.data.model.Message
-import java.util.*
 
-class ChatsAdapter : RecyclerView.Adapter<ChatCardHolder>() {
+class ChatsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<ChatCardHolder>() {
 
     private val chats = mutableListOf<Chat>()
 
@@ -21,20 +20,20 @@ class ChatsAdapter : RecyclerView.Adapter<ChatCardHolder>() {
     override fun getItemCount(): Int = chats.size
 
     override fun onBindViewHolder(holder: ChatCardHolder, position: Int) {
-        holder.bind(chats[position])
+        holder.bind(chats[position], listener)
     }
 
     fun filTestData() {
 
         val message1 = Message(132456, 1, 2, "Hello")
-        val message2 = Message(3243543, 1, 2, "Hello")
-        val message3 = Message(547787, 1, 2, "WorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorld")
+        val message2 = Message(3243543, 2, 1, "Hello")
+        val message3 = Message(547787, 1, 2, "WorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorldWorld")
 
-        chats.add(Chat(123L, "Vasikli", mutableListOf(message1, message2, message3)))
-        chats.add(Chat(6354L, "Ivan", mutableListOf(message1, message2, message3)))
-        chats.add(Chat(5747L, "Natasha", mutableListOf(message1, message2, message3)))
-        chats.add(Chat(879L, "Alex", mutableListOf(message1, message2, message3)))
-        chats.add(Chat(134L, "Nina", mutableListOf(message1, message2, message3)))
+        chats.add(Chat(1, "Vasili", mutableListOf(message1, message2, message3)))
+        chats.add(Chat(2, "Ivan", mutableListOf(message1, message2, message3)))
+        chats.add(Chat(3, "Natasha", mutableListOf(message1, message2, message3)))
+        chats.add(Chat(4, "Alex", mutableListOf(message1, message2, message3)))
+        chats.add(Chat(5, "Nina", mutableListOf(message1, message2, message3)))
         notifyDataSetChanged()
     }
 
@@ -45,5 +44,9 @@ class ChatsAdapter : RecyclerView.Adapter<ChatCardHolder>() {
 
         chats.addAll(data)
         notifyDataSetChanged()
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick(chatId: Long)
     }
 }
