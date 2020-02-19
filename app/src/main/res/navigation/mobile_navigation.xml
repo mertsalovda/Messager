@@ -39,5 +39,10 @@
     <fragment
         android:id="@+id/nav_chat"
         android:name="ru.mertsalovda.messager.ui.chat.ChatFragment"
-        tools:layout="@layout/fr_chat"/>
+        tools:layout="@layout/fr_chat">
+        <argument
+            android:name="title"
+            app:argType="string"/>
+
+    </fragment>
 </navigation>

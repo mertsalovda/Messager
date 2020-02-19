@@ -16,18 +16,18 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/customEndIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxStrokeColor="@color/primaryDarkColor"
-        android:paddingBottom="4dp"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
+        android:paddingBottom="4dp"
+        app:boxStrokeColor="@color/primaryDarkColor"
+        app:endIconDrawable="@drawable/ic_send"
+        app:endIconMode="custom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/customEndIcon"
-        app:endIconMode="custom"
-        app:endIconDrawable="@drawable/ic_send">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

@@ -45,5 +45,6 @@ class ChatsFragment : Fragment(), ChatsAdapter.OnItemClickListener {
         val bundle = Bundle()
         bundle.putLong(ChatFragment.CHAT_ID, chatId)
         navController?.navigate(R.id.action_nav_all_chats_to_nav_chat, bundle)
+
     }
 }

@@ -12,8 +12,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fr_chat.*
 import ru.mertsalovda.messager.R
+import ru.mertsalovda.messager.ui.MainActivity
 
 class ChatFragment : Fragment() {
 
@@ -30,7 +32,6 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         chatId = arguments?.get(CHAT_ID) as Long
-
         chatViewModel =
             ViewModelProviders.of(this).get(ChatViewModel::class.java)
         val root = inflater.inflate(R.layout.fr_chat, container, false)
@@ -44,7 +45,7 @@ class ChatFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         navController = findNavController()
-
+        (requireActivity() as MainActivity).toolbar.title = "$chatId"
         adapter.addData(chatViewModel.loadMessage(chatId), true)
         recyclerMessages.layoutManager = LinearLayoutManager(activity)
         recyclerMessages.adapter = adapter

@@ -24,6 +24,7 @@ class ChatsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
     }
 
     fun filTestData() {
+        if (chats.isNotEmpty()) return
 
         val message1 = Message(132456, 1, 2, "Hello")
         val message2 = Message(3243543, 2, 1, "Hello")
