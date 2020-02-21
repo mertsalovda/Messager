@@ -35,7 +35,6 @@ class UsersFragment : Fragment(), UsersAdapter.OnItemClickListener {
         super.onActivityCreated(savedInstanceState)
 
         navController = findNavController()
-        adapter.filTestData()
         recyclerUsers.layoutManager = LinearLayoutManager(activity)
         recyclerUsers.adapter = adapter
 

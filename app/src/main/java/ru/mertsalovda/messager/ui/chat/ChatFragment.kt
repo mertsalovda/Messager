@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,27 +36,21 @@ class ChatFragment : Fragment() {
     ): View? {
         chatId = try {
             arguments?.get(CHAT_ID) as Long
-        } catch (e: Exception){
+        } catch (e: Exception) {
             1
         }
 
         user = arguments?.get(USER) as User?
 
-        chatViewModel =
-            ViewModelProviders.of(this).get(ChatViewModel::class.java)
+        chatViewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
         val root = inflater.inflate(R.layout.fr_chat, container, false)
-
-        chatViewModel.text.observe(viewLifecycleOwner, Observer {
-        })
 
         return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        navController = findNavController()
         (requireActivity() as MainActivity).toolbar.title = "$chatId"
-        adapter.addData(chatViewModel.loadMessage(chatId), true)
         recyclerMessages.layoutManager = LinearLayoutManager(activity)
         recyclerMessages.adapter = adapter
 
