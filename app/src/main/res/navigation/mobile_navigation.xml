@@ -20,17 +20,22 @@
         android:id="@+id/nav_all_chats"
         android:name="ru.mertsalovda.messager.ui.chats.ChatsFragment"
         android:label="@string/menu_chats"
-        tools:layout="@layout/fr_chats" >
+        tools:layout="@layout/fr_chats">
         <action
             android:id="@+id/action_nav_all_chats_to_nav_chat"
             app:destination="@id/nav_chat"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/nav_add_chat"
         android:name="ru.mertsalovda.messager.ui.users.UsersFragment"
         android:label="@string/menu_add_chat"
-        tools:layout="@layout/fr_users" />
+        tools:layout="@layout/fr_users">
+        <action
+            android:id="@+id/action_nav_add_chat_to_nav_chat"
+            app:destination="@id/nav_chat"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/nav_profile"
         android:name="ru.mertsalovda.messager.ui.profile.ProfileFragment"
@@ -42,7 +47,7 @@
         tools:layout="@layout/fr_chat">
         <argument
             android:name="title"
-            app:argType="string"/>
+            app:argType="string" />
 
     </fragment>
 </navigation>

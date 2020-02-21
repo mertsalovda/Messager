@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fr_chat.*
 import ru.mertsalovda.messager.R
+import ru.mertsalovda.messager.data.model.User
 import ru.mertsalovda.messager.ui.MainActivity
+import java.lang.Exception
 
 class ChatFragment : Fragment() {
 
@@ -24,6 +26,7 @@ class ChatFragment : Fragment() {
 
     private val adapter = ChatAdapter()
     private var chatId: Long = 0
+    private var user: User? = null
 
 
     override fun onCreateView(
@@ -31,7 +34,14 @@ class ChatFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        chatId = arguments?.get(CHAT_ID) as Long
+        chatId = try {
+            arguments?.get(CHAT_ID) as Long
+        } catch (e: Exception){
+            1
+        }
+
+        user = arguments?.get(USER) as User?
+
         chatViewModel =
             ViewModelProviders.of(this).get(ChatViewModel::class.java)
         val root = inflater.inflate(R.layout.fr_chat, container, false)
@@ -58,5 +68,6 @@ class ChatFragment : Fragment() {
 
     companion object {
         const val CHAT_ID = "CHAT_ID"
+        const val USER = "USER"
     }
 }
