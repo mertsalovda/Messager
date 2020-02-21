@@ -1,3 +1,14 @@
 package ru.mertsalovda.messager.data.model
 
-data class Message(val date: Long, val id_sender: Long, val id_target: Long, val text: String)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class Message(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    val senderId: Long,
+    val targetId: Long,
+    val date: Long,
+    val text: String
+)

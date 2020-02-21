@@ -2,8 +2,6 @@ package ru.mertsalovda.messager.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.mertsalovda.messager.data.LoginDataSource
-import ru.mertsalovda.messager.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

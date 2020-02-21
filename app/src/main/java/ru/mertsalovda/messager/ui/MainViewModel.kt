@@ -3,8 +3,7 @@ package ru.mertsalovda.messager.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.mertsalovda.messager.App
-import ru.mertsalovda.messager.data.LoginRepository
-import ru.mertsalovda.messager.data.model.LoggedInUser
+import ru.mertsalovda.messager.data.model.UserLoggin
 import javax.inject.Inject
 
 class MainViewModel : ViewModel() {
@@ -14,8 +13,8 @@ class MainViewModel : ViewModel() {
 
     var username: String
 
-    private val _loggedInUser = MutableLiveData<LoggedInUser>()
-    val logginInUser: MutableLiveData<LoggedInUser> = _loggedInUser
+    private val _loggedInUser = MutableLiveData<UserLoggin>()
+    val logginInUserLoggin: MutableLiveData<UserLoggin> = _loggedInUser
 
     init {
         // In this example, the user is always unauthenticated when MainActivity is launched
@@ -42,7 +41,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun authState() {
-        logginInUser.postValue(loginRepository.user)
+        logginInUserLoggin.postValue(loginRepository.userLoggin)
     }
 
     companion object {

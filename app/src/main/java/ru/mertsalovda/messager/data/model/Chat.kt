@@ -1,4 +1,15 @@
 package ru.mertsalovda.messager.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Chat(val id: Long, val name: String, val messages: MutableList<Message>)
+
+@Entity
+data class Chat(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    val user: User,
+    val name: String,
+    val messages: MutableList<Message>,
+    val unread: Int
+)

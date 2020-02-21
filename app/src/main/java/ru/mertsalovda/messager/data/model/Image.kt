@@ -4,12 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class User(
+data class Image(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val uid: Long,
-    val name: String,
-    val about: String,
-    val lastTime: Long,
-    val avatar: Image
+    val photoUrl: String,
+    val userUID: Long,
+    val userId: Long
 )

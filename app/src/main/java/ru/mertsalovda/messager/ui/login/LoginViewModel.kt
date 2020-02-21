@@ -4,11 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.mertsalovda.messager.App
-import ru.mertsalovda.messager.data.LoginRepository
-import ru.mertsalovda.messager.data.Result
 
 import ru.mertsalovda.messager.R
-import toothpick.ktp.delegate.inject
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor() : ViewModel() {
@@ -32,7 +29,7 @@ class LoginViewModel @Inject constructor() : ViewModel() {
 
         if (result is Result.Success) {
             _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+                LoginResult(success = LoggedInUserView(displayName = result.data.name))
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }

@@ -34,6 +34,7 @@
         <action
             android:id="@+id/action_nav_add_chat_to_nav_chat"
             app:destination="@id/nav_chat"
+            app:popUpTo="@id/nav_all_chats"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment

@@ -5,7 +5,6 @@ import ru.mertsalovda.messager.R
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.mertsalovda.messager.App
-import ru.mertsalovda.messager.data.LoginRepository
 import ru.mertsalovda.messager.data.model.Message
 import toothpick.Toothpick
 import javax.inject.Inject
@@ -39,7 +38,7 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         val message = messages[position]
-        val idUser = loginRepository.user?.id
+        val idUser = loginRepository.userLoggin?.id
         return when {
             message.id_sender == idUser -> MessageType.RIGHT.ordinal
             message.id_sender != idUser -> MessageType.LEFT.ordinal

@@ -1,16 +1,18 @@
 package ru.mertsalovda.messager.di
 
-import ru.mertsalovda.messager.data.LoginDataSource
-import ru.mertsalovda.messager.data.LoginRepository
+import android.content.Context
+import androidx.room.Room
+import ru.mertsalovda.messager.data.DataBase
 import toothpick.config.Module
 import toothpick.ktp.binding.bind
 
-class AppModule : Module() {
-
-    private val loginRepository = provideLoginRepository()
+class AppModule(private val context: Context) : Module() {
 
     init {
-        bind<LoginRepository>().toInstance(loginRepository)
+        bind(DataBase::class).toInstance(provideDataBase())
     }
-    fun provideLoginRepository() = LoginRepository(LoginDataSource())
+
+    private fun provideDataBase(): DataBase{
+        return Room.databaseBuilder(context, DataBase::class.java, "database").build()
+    }
 }
