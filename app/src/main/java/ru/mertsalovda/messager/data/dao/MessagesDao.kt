@@ -1,18 +1,15 @@
 package ru.mertsalovda.messager.data.dao
 
-import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import ru.mertsalovda.messager.data.model.Message
 
+@Dao
 interface MessagesDao {
 
-    @Query("select * from message where senderId = :id")
-    fun getAllMessageFromSender(id: Long): LiveData<List<Message>>
+    @Query("select * from message where owner_id = :chatId")
+    fun getAllMessageByChatId(chatId: Long): List<Message>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMessage(message: Message)
 
     @Update

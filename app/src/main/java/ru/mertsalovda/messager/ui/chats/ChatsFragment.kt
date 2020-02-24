@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -38,6 +39,11 @@ class ChatsFragment : Fragment(), ChatsAdapter.OnItemClickListener {
         navController = findNavController()
         recyclerChats.layoutManager = layoutManager
         recyclerChats.adapter = adapter
+
+        chatsViewModel.load()
+        chatsViewModel.chats.observe(viewLifecycleOwner, Observer {
+            adapter.addData(it, true)
+        })
     }
 
     override fun onItemClick(chatId: Long) {

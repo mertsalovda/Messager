@@ -13,7 +13,6 @@ class ChatCardHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(item: Chat, listener: ChatsAdapter.OnItemClickListener) {
         mName.text = item.name
-        mMessageText.text = item.messages.last().text
-        itemView.setOnClickListener { listener.onItemClick(item.id) }
+        itemView.setOnClickListener { listener.onItemClick(item.chatId) }
     }
 }

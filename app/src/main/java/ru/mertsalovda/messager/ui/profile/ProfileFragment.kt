@@ -25,8 +25,8 @@ class ProfileFragment : Fragment() {
 
         profileViewModel.load()
 
-        profileViewModel.logginInUserLoggin.observe(viewLifecycleOwner, Observer {
-            tvUID.text = it.uid
+        profileViewModel.loginInUserLogin.observe(viewLifecycleOwner, Observer {
+            tvUID.text = it.uid.toString()
             tvNameUser.text = it.name
             tvAboutSelf.text = it.about
         })

@@ -1,6 +1,5 @@
 package ru.mertsalovda.messager.data.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.Dao
 import ru.mertsalovda.messager.data.model.Chat
@@ -9,16 +8,19 @@ import ru.mertsalovda.messager.data.model.Chat
 interface ChatsDao {
 
     @Query("select * from chat")
-    fun getAllChats(): LiveData<List<Chat>>
+    fun getAllChats(): List<Chat>
 
-    @Query("select * from chat where id = :id")
-    fun getChatById(id: Long): LiveData<Chat>
+    @Query("select * from chat where chat_id = :id")
+    fun getChatById(id: Long): Chat
+    @Query("select * from chat where user_uid = :uid")
+    fun getChatByUserUid(uid: Long): Chat?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertChat(chat: Chat)
 
     @Update
     fun updateChat(chat: Chat)
+
 
     @Delete
     fun deleteChat(chat: Chat)

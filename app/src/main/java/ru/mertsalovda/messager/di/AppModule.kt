@@ -8,11 +8,15 @@ import toothpick.ktp.binding.bind
 
 class AppModule(private val context: Context) : Module() {
 
+    private val dataBase = provideDataBase()
+
     init {
-        bind(DataBase::class).toInstance(provideDataBase())
+        bind(DataBase::class).toInstance(dataBase)
     }
 
-    private fun provideDataBase(): DataBase{
-        return Room.databaseBuilder(context, DataBase::class.java, "database").build()
+    private fun provideDataBase(): DataBase {
+        return Room.databaseBuilder(context, DataBase::class.java, "database.db")
+            .allowMainThreadQueries()
+            .build()
     }
 }

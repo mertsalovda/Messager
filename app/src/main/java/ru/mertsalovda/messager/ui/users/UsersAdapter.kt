@@ -25,14 +25,6 @@ class UsersAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
     fun filTestData() {
         if (users.isNotEmpty()) return
 
-        users.add(User(15, "Grisha", "Рад поболтать!"))
-        users.add(User(11, "Alex", "I am use messager"))
-        users.add(User(16, "Petr", "Болтать!"))
-        users.add(User(34, "Sasha", "Писать только по делу"))
-        users.add(User(88, "Masha", "Смотри дальше"))
-        users.add(User(85, "Ivan", "И на меня не смотри"))
-        users.add(User(12, "Sergey", "А на меня смотри"))
-
         notifyDataSetChanged()
     }
 

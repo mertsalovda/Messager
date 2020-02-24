@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fr_chat.*
@@ -34,13 +32,6 @@ class ChatFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        chatId = try {
-            arguments?.get(CHAT_ID) as Long
-        } catch (e: Exception) {
-            1
-        }
-
-        user = arguments?.get(USER) as User?
 
         chatViewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
         val root = inflater.inflate(R.layout.fr_chat, container, false)
@@ -50,10 +41,24 @@ class ChatFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (requireActivity() as MainActivity).toolbar.title = "$chatId"
+        try {
+            chatId = arguments?.get(CHAT_ID) as Long
+        } catch (e: Exception) {
+            Toast.makeText(activity, "${e.message}", Toast.LENGTH_SHORT).show()
+        }
+
         recyclerMessages.layoutManager = LinearLayoutManager(activity)
         recyclerMessages.adapter = adapter
 
+        chatViewModel.load(chatId)
+
+        chatViewModel.chatName.observe(viewLifecycleOwner, Observer {
+            (requireActivity() as MainActivity).toolbar.title = it
+        })
+
+        chatViewModel.messages.observe(viewLifecycleOwner, Observer {
+            adapter.addData(it, true)
+        })
 
         customEndIcon.setEndIconOnClickListener {
             Toast.makeText(activity, "CUSTOM END ICON", Toast.LENGTH_SHORT).show()
@@ -62,6 +67,5 @@ class ChatFragment : Fragment() {
 
     companion object {
         const val CHAT_ID = "CHAT_ID"
-        const val USER = "USER"
     }
 }

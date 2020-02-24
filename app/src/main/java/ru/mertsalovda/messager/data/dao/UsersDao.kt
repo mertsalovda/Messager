@@ -1,6 +1,5 @@
 package ru.mertsalovda.messager.data.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.Dao
 import ru.mertsalovda.messager.data.model.User
@@ -9,9 +8,12 @@ import ru.mertsalovda.messager.data.model.User
 interface UsersDao {
 
     @Query("select * from user")
-    fun getAllUsers(): LiveData<List<User>>
+    fun getAllUsers(): List<User>
 
-    @Insert
+    @Query("select * from user where user_id = :userId")
+    fun getUserById(userId: Long): List<User>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User)
 
     @Update

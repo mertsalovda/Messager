@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        viewModel.logginInUserLoggin.observe(this, Observer {
+        viewModel.loginInUserLogin.observe(this, Observer {
             headerUserName.text = it.name
         })
 

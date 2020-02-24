@@ -3,15 +3,18 @@ package ru.mertsalovda.messager.ui.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.room.Database
 import ru.mertsalovda.messager.App
 
 import ru.mertsalovda.messager.R
+import ru.mertsalovda.messager.data.DataBase
+import ru.mertsalovda.messager.data.model.UserLogin
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor() : ViewModel() {
 
     @Inject
-    lateinit var loginRepository: LoginRepository
+    lateinit var database: DataBase
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -20,19 +23,11 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     val loginResult: LiveData<LoginResult> = _loginResult
 
     init{
-        App.appScopo.inject(this)
+        App.appScope.inject(this)
+        database.userLoginDao().insertUserLogin(UserLogin(1, 123, "Dmitriy", "Nothing", "TOKEN"))
     }
 
     fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
-
-        if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.name))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
-        }
     }
 
     fun loginDataChanged(username: String, password: String) {

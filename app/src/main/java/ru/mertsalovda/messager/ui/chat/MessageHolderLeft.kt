@@ -15,7 +15,7 @@ class MessageHolderLeft(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvLeftMessage = itemView.findViewById<TextView>(R.id.tvLeftMessage)
 
     fun bind(item: Message) {
-        tvLeftName.text = item.id_sender.toString()
+        tvLeftName.text = item.senderUid.toString()
         tvLeftDate.text = DateFormat.getDateFormat(itemView.context).format(Date(item.date))
         tvLeftMessage.text = item.text
     }
