@@ -23,9 +23,9 @@ class ChatViewModel : ViewModel() {
     val chatName: MutableLiveData<String> = _chatName
 
     fun load(chatId: Long){
-        val chat = database.chatsDao().getChatById(chatId)
-        chatName.postValue(chat.name)
-        val allMessages = database.messagesDao().getAllMessageByChatId(chatId)
+        val chatAndMessages = database.chatsDao().getChatWithMessagesById(chatId).first()
+        chatName.postValue(chatAndMessages.chat.name)
+        val allMessages = chatAndMessages.messages
         messages.postValue(allMessages)
     }
 }

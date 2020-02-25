@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.mertsalovda.messager.R
 import ru.mertsalovda.messager.data.model.Chat
+import ru.mertsalovda.messager.data.model.ChatAndMessages
 import ru.mertsalovda.messager.data.model.Message
 
 class ChatsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<ChatCardHolder>() {
 
-    private val chats = mutableListOf<Chat>()
+    private val chats = mutableListOf<ChatAndMessages>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatCardHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -29,7 +30,7 @@ class ChatsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
         notifyDataSetChanged()
     }
 
-    fun addData(data: List<Chat>, clear: Boolean){
+    fun addData(data: List<ChatAndMessages>, clear: Boolean){
         if (clear){
             chats.clear()
         }

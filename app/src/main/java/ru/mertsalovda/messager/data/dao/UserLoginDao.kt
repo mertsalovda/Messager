@@ -1,8 +1,6 @@
 package ru.mertsalovda.messager.data.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.room.Dao
 import ru.mertsalovda.messager.data.model.UserLogin
 
 @Dao

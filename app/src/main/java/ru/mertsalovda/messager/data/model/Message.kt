@@ -24,6 +24,8 @@ data class Message(
     val senderUid: Long,
     @ColumnInfo(name = "target_uid")
     val targetUid: Long,
+    @ColumnInfo(name = "sender_name")
+    val senderName: String,
     @ColumnInfo(name = "date")
     val date: Long,
     @ColumnInfo(name = "text")

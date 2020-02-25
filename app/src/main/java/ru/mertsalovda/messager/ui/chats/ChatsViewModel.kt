@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.mertsalovda.messager.App
 import ru.mertsalovda.messager.data.DataBase
-import ru.mertsalovda.messager.data.model.Chat
+import ru.mertsalovda.messager.data.model.ChatAndMessages
 import javax.inject.Inject
 
 class ChatsViewModel : ViewModel() {
@@ -16,11 +16,11 @@ class ChatsViewModel : ViewModel() {
         App.appScope.inject(this)
     }
 
-    private val _chats = MutableLiveData<List<Chat>>()
-    val chats: MutableLiveData<List<Chat>> = _chats
+    private val _chats = MutableLiveData<List<ChatAndMessages>>()
+    val chats: MutableLiveData<List<ChatAndMessages>> = _chats
 
     fun load(){
-        val allChats = database.chatsDao().getAllChats()
+        val allChats = database.chatsDao().getChatWithMessages()
         chats.postValue(allChats)
     }
 

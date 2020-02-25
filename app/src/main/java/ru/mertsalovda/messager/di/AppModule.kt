@@ -15,7 +15,7 @@ class AppModule(private val context: Context) : Module() {
     }
 
     private fun provideDataBase(): DataBase {
-        return Room.databaseBuilder(context, DataBase::class.java, "database.db")
+        return Room.databaseBuilder(context, DataBase::class.java, "database1.db")
             .allowMainThreadQueries()
             .build()
     }
