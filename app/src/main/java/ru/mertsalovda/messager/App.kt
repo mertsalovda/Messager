@@ -10,10 +10,10 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        appScopo = Toothpick.openScope(Application::class.java).installModules(AppModule())
+        appScope = Toothpick.openScope(Application::class.java).installModules(AppModule(applicationContext))
     }
 
     companion object {
-        lateinit var appScopo: Scope
+        lateinit var appScope: Scope
     }
 }

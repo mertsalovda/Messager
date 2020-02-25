@@ -12,8 +12,7 @@
         android:layout_alignParentStart="true"
         app:cardElevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/primaryDarkColor">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -29,17 +28,19 @@
                 android:paddingRight="4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:textStyle="bold"
                 tools:text="Input" />
 
             <TextView
                 android:id="@+id/tvLeftDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
                 android:paddingRight="4dp"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/tvLeftName"
-                app:layout_constraintTop_toBottomOf="@+id/tvLeftName"
+                app:layout_constraintStart_toEndOf="@+id/tvLeftName"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="12:10 18.02.2020" />
 
             <TextView
@@ -47,10 +48,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:maxWidth="300dp"
                 android:paddingRight="4dp"
-                app:layout_constraintStart_toStartOf="@+id/tvLeftDate"
-                app:layout_constraintTop_toBottomOf="@+id/tvLeftDate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvLeftName"
+                app:layout_constraintTop_toBottomOf="@+id/tvLeftName"
                 tools:text="Hello world from left!" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

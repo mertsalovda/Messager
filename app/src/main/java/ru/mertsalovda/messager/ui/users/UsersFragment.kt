@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,7 @@ class UsersFragment : Fragment(), UsersAdapter.OnItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        usersViewModel = ViewModelProviders.of(this).get(UsersViewModel::class.java)
+        usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
         val root = inflater.inflate(R.layout.fr_users, container, false)
 
         return root
@@ -38,11 +39,18 @@ class UsersFragment : Fragment(), UsersAdapter.OnItemClickListener {
         recyclerUsers.layoutManager = LinearLayoutManager(activity)
         recyclerUsers.adapter = adapter
 
+        usersViewModel.load()
+
+        usersViewModel.users.observe(viewLifecycleOwner, Observer {
+            adapter.addData(it, true)
+        })
+
     }
 
     override fun onItemClick(user: User) {
         val bundle = Bundle()
-        bundle.putSerializable(ChatFragment.USER, user)
+        val chat = usersViewModel.createNewChatWithUser(user)
+        bundle.putLong(ChatFragment.CHAT_ID, chat.chatId)
         navController?.navigate(R.id.action_nav_add_chat_to_nav_chat, bundle)
     }
 }

@@ -13,7 +13,7 @@ class UserCardHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(item: User, listener: UsersAdapter.OnItemClickListener) {
         mName.text = item.name
-        mDescription.text = item.descriptor
+        mDescription.text = item.about
         itemView.setOnClickListener { listener.onItemClick(item) }
     }
 }

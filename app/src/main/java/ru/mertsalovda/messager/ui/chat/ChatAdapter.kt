@@ -5,20 +5,21 @@ import ru.mertsalovda.messager.R
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.mertsalovda.messager.App
-import ru.mertsalovda.messager.data.LoginRepository
+import ru.mertsalovda.messager.data.DataBase
 import ru.mertsalovda.messager.data.model.Message
+import ru.mertsalovda.messager.data.model.UserLogin
 import toothpick.Toothpick
 import javax.inject.Inject
 
 class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    @Inject
-    lateinit var loginRepository: LoginRepository
-
     private var messages = mutableListOf<Message>()
 
+    @Inject
+    lateinit var db: DataBase
+
     init {
-        Toothpick.inject(this, App.appScopo)
+        Toothpick.inject(this, App.appScope)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -39,10 +40,10 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         val message = messages[position]
-        val idUser = loginRepository.user?.id
+        val idUser = db.userLoginDao().getUserLogin().first()
         return when {
-            message.id_sender == idUser -> MessageType.RIGHT.ordinal
-            message.id_sender != idUser -> MessageType.LEFT.ordinal
+            message.senderUid == idUser.uid -> MessageType.RIGHT.ordinal
+            message.senderUid != idUser.uid -> MessageType.LEFT.ordinal
             else -> -1
         }
     }
@@ -56,7 +57,7 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun addData(data: MutableList<Message>, isClean: Boolean) {
+    fun addData(data: List<Message>, isClean: Boolean) {
         if (isClean) {
             messages.clear()
         }
