@@ -33,8 +33,10 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTextMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:capitalize="sentences"
             android:hint="Message"
             android:maxLines="4" />
 

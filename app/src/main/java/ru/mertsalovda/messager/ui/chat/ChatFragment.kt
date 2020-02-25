@@ -24,7 +24,6 @@ class ChatFragment : Fragment() {
 
     private val adapter = ChatAdapter()
     private var chatId: Long = 0
-    private var user: User? = null
 
 
     override fun onCreateView(
@@ -58,11 +57,19 @@ class ChatFragment : Fragment() {
 
         chatViewModel.messages.observe(viewLifecycleOwner, Observer {
             adapter.addData(it, true)
+            moveToLastPosition()
         })
 
         customEndIcon.setEndIconOnClickListener {
-            Toast.makeText(activity, "CUSTOM END ICON", Toast.LENGTH_SHORT).show()
+            chatViewModel.sendMessage(etTextMessage.text.toString())
+            etTextMessage.text?.clear()
+            chatViewModel.load(chatId)
+            moveToLastPosition()
         }
+    }
+
+    private fun moveToLastPosition() {
+        recyclerMessages.scrollToPosition((recyclerMessages.adapter as ChatAdapter).itemCount - 1)
     }
 
     companion object {
