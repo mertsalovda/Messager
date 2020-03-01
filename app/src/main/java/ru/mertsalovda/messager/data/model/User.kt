@@ -18,6 +18,6 @@ data class User(
     val about: String,
     @ColumnInfo(name = "last_time")
     val lastTime: Long,
-    @Embedded
-    val avatar: Image
+    @ColumnInfo(name = "image_url")
+    val imageUrl: String
 )
