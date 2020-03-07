@@ -38,7 +38,7 @@ class NetworkModule : Module() {
 
     private fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl("http://192.168.1.65/")
+            .baseUrl("http://mertsalovda-chatserver.us-east-2.elasticbeanstalk.com/")
             .client(okHttpClient)
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

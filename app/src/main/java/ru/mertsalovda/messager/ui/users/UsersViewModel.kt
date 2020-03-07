@@ -1,5 +1,6 @@
 package ru.mertsalovda.messager.ui.users
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -31,7 +32,13 @@ class UsersViewModel : ViewModel() {
         api.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ users.postValue(it) }, {})
+            .subscribe(
+                {
+                    users.postValue(it)
+                },
+                {
+                    println("!!!!!!! ${it.message}")
+                })
     }
 
     fun createNewChatWithUser(user: User): Chat {
