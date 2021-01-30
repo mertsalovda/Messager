@@ -4,20 +4,37 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlin.properties.Delegates
 
 @Entity
-data class User(
+class User constructor() {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "user_id")
-    val id: Long,
+    var id: Long =0
     @ColumnInfo(name = "user_uid")
-    val uid: Long,
+    var uid: Long =0
     @ColumnInfo(name = "name")
-    val name: String,
+    var name: String = ""
     @ColumnInfo(name = "about")
-    val about: String,
+    var about: String = ""
     @ColumnInfo(name = "last_time")
-    val lastTime: Long,
-    @Embedded
-    val avatar: Image
-)
+    var lastTime: Long = 0
+    @ColumnInfo(name = "image_url")
+    var imageUrl: String = ""
+
+    constructor(
+        id: Long,
+        uid: Long,
+        name: String,
+        about: String,
+        lastTime: Long,
+        imageUrl: String
+    ) : this() {
+        this.id = id
+        this.uid = uid
+        this.name = name
+        this.about = about
+        this.lastTime = lastTime
+        this.imageUrl = imageUrl
+    }
+}
